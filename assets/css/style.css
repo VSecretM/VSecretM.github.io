@@ -2056,7 +2056,7 @@ body {
 
 /* Sections background: Quote */
 .section-quote {
-  background: url(../img/quote.jpg) center no-repeat fixed;
+  background: url(../img/Logo/Halo.png) center no-repeat fixed;
 }
 
 .section-quote p {
@@ -2070,7 +2070,7 @@ body {
 
 /* Sections background: Me */
 .section-me {
-  background: url(../img/portfolio-7.jpg) center no-repeat fixed;
+  background: url(../img/Logo/6.png) center no-repeat fixed;
 }
 
 .section-me h2 {
@@ -2081,7 +2081,7 @@ body {
 
 /* Sections background: Twitter */
 .section-twitter {
-  background: url(../img/portfolio-8.jpg) center no-repeat fixed;
+  background: url(../img/Logo/All.jpg) center no-repeat fixed;
 }
 
 .section-twitter .container {
