@@ -33,7 +33,7 @@
     <!-- Stylesheets
     ================================================== -->
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
 
     <!-- Font Awesome core CSS -->
     <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
@@ -79,7 +79,7 @@
 
             <!-- Name -->
             <div class="page-scroll site-logo">
-              <a href="#top">SecretM</a>
+              <a href="index.html">SecretM</a>
             </div>
           </div>
           <!-- /.navbar-header -->
@@ -110,14 +110,18 @@
           <h2>Blacklist tower of disappearance</h2>
           <p class="section-subtitle"><span>Blacklist</span></p>
           <div class="row">
+            <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+              <strong>Success</strong> Thanks for using My Website
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             <form name="submit-to-google-sheet">
-              <div class="col-md-4">
-                <input class="form-control" type="text" name="nama" placeholder="Nickname" required />
+              <div class="col-md-12 p-3">
+                <input class="form-control" type="text" name="nickname" placeholder="Nickname" required />
               </div>
-              <div class="col-md-4">
+              <div class="col-md-12 p-3">
                 <input class="form-control" type="text" name="blacklist" placeholder="Name Blacklist" required />
               </div>
-              <div class="col-md-4">
+              <div class="col-md-12 p-3">
                 <select class="form-control" name="hero" id="nm_hero" required>
                   <option value="" selected disabled>Hero?</option>
                   <option value="Elesis">Elesis</option>
@@ -142,17 +146,31 @@
                   <option value="Uno" disabled>Uno</option>
                 </select>
               </div>
-              <div class="col-sm-12">
+              <div class="col-sm-12 p-3">
                 <textarea class="form-control" name="reason" placeholder="Your Reason" required></textarea>
               </div>
-              <div class="col-sm-12">
-                <button class="btn btn-inverted" type="submit">Send Blacklist</button>
+              <div class="col-sm-12 p-3">
+                <button type="submit" class="btn btn-inverted btn-kirim">Send Blacklist</button>
               </div>
+              <button class="btn btn-primary d-none btn-loading" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
             </form>
           </div>
         </div>
       </section>
       <!--End Blacklist-->
+
+      <!--Data-->
+      <iframe
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR2g8bNWA_tKFb47vujhaAjASyESV7i0FgOMIyOSUvT-Me7iVWEruNEGyruploldoHPxU_U5HFdqQva/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
+        width="100%"
+        height="500px"
+      ></iframe>
+
+      <!--End Data-->
+
       <!-- Social Networks section -->
       <section class="section-networks blue-bg">
         <div class="container">
@@ -176,14 +194,6 @@
     <!-- Footer -->
     <footer id="colophon" class="site-footer">
       <div class="container-fluid">
-        <ul class="list-unstyled list-inline">
-          <li class="page-scroll"><a href="#top">Home</a></li>
-          <li class="page-scroll"><a href="#intro">Intro</a></li>
-          <li class="page-scroll"><a href="#about">About</a></li>
-          <li class="page-scroll"><a href="#services">Services</a></li>
-          <li class="page-scroll"><a href="#contact">Contact</a></li>
-        </ul>
-
         <div class="page-scroll">
           <a href="#top" class="rectangle">
             <i class="fa fa-angle-double-up"></i>
@@ -205,19 +215,30 @@
     <script src="assets/js/jquery.min.js"></script>
 
     <script>
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbxVAxEdv3m81UsiRWUyZtyPbnJbJZftB4x89szHnVoTTwZyml9N3cawV1j9j04VlgNbDg/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxbL-sRw1zlX-PCy_lNiwNpnOlbY11d2ILK-yxIzTCVUmqqE2Mteq96exSadauPpEYtCw/exec';
       const form = document.forms['submit-to-google-sheet'];
+      const btnKirim = document.querySelector('.btn-kirim');
+      const btnLoading = document.querySelector('.btn-loading');
+      const myAlert = document.querySelector('.my-alert');
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
+        btnLoading.classList.toggle('d-none');
+        btnKirim.classList.toggle('d-none');
         fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-          .then((response) => console.log('Success!', response))
+          .then((response) => {
+            btnLoading.classList.toggle('d-none');
+            btnKirim.classList.toggle('d-none');
+            myAlert.classList.toggle('d-none');
+            form.reset();
+            console.log('Success!', response);
+          })
           .catch((error) => console.error('Error!', error.message));
       });
     </script>
 
     <!-- Bootstrap core js | Do not Delete -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
     <!-- Bootstrap progressbar JS -->
     <script src="assets/js/bootstrap-progressbar.min.js"></script>
